@@ -1,6 +1,7 @@
 from mainForm import Ui_MainWindow
 import sys
 import requests
+from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
@@ -13,12 +14,22 @@ class Example(QMainWindow, Ui_MainWindow):
 
     def initUI(self):
         self.start.clicked.connect(self.run_start)
+        self.dest = 0.2
+
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_PageUp:
+            self.dest += 0.1
+            self.run_start()
+        elif event.key == Qt.Key_PageDown:
+            if self.dest > 0.1:
+                self.dest -= 0.1
+            self.run_start()
 
     def run_start(self):
         try:
             dol = int(self.dol.text())
             shir = int(self.shir.text())
-            map_request = f"http://static-maps.yandex.ru/1.x/?ll={shir},{dol}&spn=0.2,0.2&l=map"
+            map_request = f"http://static-maps.yandex.ru/1.x/?ll={shir},{dol}&spn={self.dest},{self.dest}&l=map"
             response = requests.get(map_request)
             self.map_file = "map.png"
             with open(self.map_file, "wb") as file:
