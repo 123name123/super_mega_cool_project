@@ -36,6 +36,7 @@ class Example(QMainWindow, Ui_MainWindow):
             "featureMember"][0]["GeoObject"]
         self.shir_ch, self.dol_ch = toponym["Point"]["pos"].split()
         self.shir_ch, self.dol_ch = float(self.shir_ch), float(self.dol_ch)
+        self.search_shir, self.search_dol = self.shir_ch, self.dol_ch
         self.run_start()
 
     def map_chng(self):
@@ -78,7 +79,7 @@ class Example(QMainWindow, Ui_MainWindow):
             map_request = f"http://static-maps.yandex.ru/1.x/?" \
                           f"ll={self.shir_ch},{self.dol_ch}&spn" \
                           f"={dest},{dest}&l={self.map}&size=650,450" \
-                          f"&pt={self.shir_ch},{self.dol_ch}"
+                          f"&pt={self.search_shir},{self.search_dol}"
             response = requests.get(map_request)
             if self.map == 'sat':
                 self.map_file = "map.jpg"
