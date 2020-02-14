@@ -1,9 +1,11 @@
-from mainForm import Ui_MainWindow
 import sys
+
 import requests
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QMainWindow
+
+from mainForm import Ui_MainWindow
 
 
 class Example(QMainWindow, Ui_MainWindow):
@@ -11,6 +13,9 @@ class Example(QMainWindow, Ui_MainWindow):
         super().__init__()
         self.setupUi(self)
         self.initUI()
+        self.pushButton.clicked.connect(self.map_change_sp)
+        self.pushButton_2.clicked.connect(self.map_change_map)
+        self.pushButton_3.clicked.connect(self.map_change_sh)
 
     def initUI(self):
         self.dest_num = 1
@@ -20,13 +25,16 @@ class Example(QMainWindow, Ui_MainWindow):
         self.map = 'map'
         self.run_start()
 
-    def map_chng(self):
-        if self.map == 'map':
-            self.map = 'sat'
-        elif self.map == 'sat':
-            self.map = 'skl'
-        elif self.map == 'skl':
-            self.map = 'map'
+    def map_change_sp(self):
+        self.map = 'sat'
+        self.run_start()
+
+    def map_change_map(self):
+        self.map = 'map'
+        self.run_start()
+
+    def map_change_sh(self):
+        self.map = 'skl'
         self.run_start()
 
     def keyPressEvent(self, event):
@@ -50,8 +58,6 @@ class Example(QMainWindow, Ui_MainWindow):
         elif event.key() == Qt.Key_Left:
             self.shir_ch -= self.dest_list[self.dest_num]
             self.run_start()
-        elif event.key() == Qt.Key_M:
-            self.map_chng()
 
     def run_start(self):
         try:
