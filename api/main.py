@@ -29,7 +29,8 @@ class Example(QMainWindow, Ui_MainWindow):
         try:
             dol = int(self.dol.text())
             shir = int(self.shir.text())
-            map_request = f"http://static-maps.yandex.ru/1.x/?ll={shir},{dol}&spn={self.dest},{self.dest}&l=map"
+            map_request = f"http://static-maps.yandex.ru/1.x/?" \
+                f"ll={shir},{dol}&spn={self.dest},{self.dest}&l=map"
             response = requests.get(map_request)
             self.map_file = "map.png"
             with open(self.map_file, "wb") as file:
