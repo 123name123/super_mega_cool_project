@@ -27,53 +27,20 @@
      <string/>
     </property>
    </widget>
-   <widget class="QLineEdit" name="input">
+   <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>370</x>
       <y>510</y>
-      <width>341</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="search">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>550</y>
-      <width>341</width>
-      <height>31</height>
+      <width>281</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="text">
-     <string>Искать</string>
+     <string>Сменить формат карты</string>
     </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>470</y>
-      <width>211</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Введите адрес:</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="chng_map">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>590</y>
-      <width>341</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>press to change type of the map</string>
+    <property name="flat">
+     <bool>false</bool>
     </property>
    </widget>
   </widget>
@@ -83,7 +50,7 @@
      <x>0</x>
      <y>0</y>
      <width>674</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
