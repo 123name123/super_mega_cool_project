@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>674</width>
-    <height>577</height>
+    <height>673</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,43 +27,53 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>470</y>
-      <width>81</width>
+      <x>10</x>
+      <y>590</y>
+      <width>211</width>
       <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>Спутник</string>
+     <string>press M to change type of the map</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QLineEdit" name="input">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>470</y>
-      <width>81</width>
+      <x>10</x>
+      <y>510</y>
+      <width>341</width>
       <height>31</height>
      </rect>
-    </property>
-    <property name="text">
-     <string>Карта</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="search">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>470</y>
-      <width>81</width>
+      <x>10</x>
+      <y>550</y>
+      <width>341</width>
       <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>Схема</string>
+     <string>Искать</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>470</y>
+      <width>211</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Введите адрес:</string>
     </property>
    </widget>
   </widget>
@@ -73,7 +83,7 @@
      <x>0</x>
      <y>0</y>
      <width>674</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
