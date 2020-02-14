@@ -20,7 +20,7 @@ class Example(QMainWindow, Ui_MainWindow):
         if event.key() == Qt.Key_PageUp:
             self.dest += 0.1
             self.run_start()
-        elif event.key == Qt.Key_PageDown:
+        elif event.key() == Qt.Key_PageDown:
             if self.dest > 0.1:
                 self.dest -= 0.1
             self.run_start()
@@ -29,7 +29,8 @@ class Example(QMainWindow, Ui_MainWindow):
         try:
             dol = float(self.dol.text())
             shir = float(self.shir.text())
-            map_request = f"http://static-maps.yandex.ru/1.x/?ll={shir},{dol}&spn={self.dest},{self.dest}&l=map"
+            map_request = f"http://static-maps.yandex.ru/1.x/?" \
+                f"ll={shir},{dol}&spn={self.dest},{self.dest}&l=map"
             response = requests.get(map_request)
             self.map_file = "map.png"
             with open(self.map_file, "wb") as file:
