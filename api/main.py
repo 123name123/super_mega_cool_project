@@ -13,39 +13,44 @@ class Example(QMainWindow, Ui_MainWindow):
         self.initUI()
 
     def initUI(self):
-        self.dest = 0.2
+        self.dest_num = 1
+        self.dest_list = [0.002, 0.005, 0.02, 0.05, 0.1, 0.3, 0.5, 1, 3, 5, 11, 15, 40]
         self.shir_ch = 37
         self.dol_ch = 55
         self.run_start()
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_PageUp:
-            self.dest += 0.1
+            if self.dest_num < len(self.dest_list) - 1:
+                self.dest_num += 1
             self.run_start()
         elif event.key() == Qt.Key_PageDown:
-            if self.dest > 0.1:
-                self.dest -= 0.1
+            if self.dest_num >= 1:
+                self.dest_num -= 1
             self.run_start()
         elif event.key() == Qt.Key_Up:
-            self.dol_ch += 0.1
+            self.dol_ch += self.dest_list[self.dest_num]
             self.run_start()
         elif event.key() == Qt.Key_Down:
-            self.dol_ch -= 0.1
+            self.dol_ch -= self.dest_list[self.dest_num]
             self.run_start()
         elif event.key() == Qt.Key_Right:
-            self.shir_ch += 0.1
+            self.shir_ch += self.dest_list[self.dest_num]
             self.run_start()
         elif event.key() == Qt.Key_Left:
-            self.shir_ch -= 0.1
+            self.shir_ch -= self.dest_list[self.dest_num]
             self.run_start()
 
     def run_start(self):
         try:
+            dest = self.dest_list[self.dest_num]
             map_request = f"http://static-maps.yandex.ru/1.x/?" \
-                f"ll={self.shir_ch},{self.dol_ch}&spn={self.dest},{self.dest}&l=map"
+                          f"ll={self.shir_ch},{self.dol_ch}&spn={dest},{dest}&l=map"
             response = requests.get(map_request)
             self.map_file = "map.png"
             with open(self.map_file, "wb") as file:
+                if 'error' in str(response.content):
+                    return
                 file.write(response.content)
             self.pixmap = QPixmap(self.map_file)
             self.our_map.setPixmap(self.pixmap)
