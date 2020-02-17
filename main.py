@@ -1,8 +1,10 @@
 import sys
+
 import requests
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QMainWindow
+
 from mainForm import Ui_MainWindow
 
 
@@ -11,6 +13,7 @@ class Example(QMainWindow, Ui_MainWindow):
         super().__init__()
         self.setupUi(self)
         self.initUI()
+        self.flag = 0
         self.setStyleSheet("""background-color: #ffe5b4""")
         self.input.setStyleSheet("""background-color: #ffffff""")
         self.input.setStyleSheet("""background-color: #ffffff""")
@@ -45,8 +48,14 @@ class Example(QMainWindow, Ui_MainWindow):
         toponym = json_response["response"]["GeoObjectCollection"][
             "featureMember"][0]["GeoObject"]
         toponym_address = toponym["metaDataProperty"]["GeocoderMetaData"]["text"]
-        self.adress.setText('Полный адрес: ' + toponym_address)
-
+        try:
+            toponym_post_code = toponym["metaDataProperty"]["GeocoderMetaData"]["Address"]["postal_code"]
+        except Exception:
+            self.checkBox.setCheckState(False)
+        if self.checkBox.isChecked():
+            self.adress.setText('Полный адрес: ' + toponym_address + ', ' + toponym_post_code)
+        else:
+            self.adress.setText('Полный адрес: ' + toponym_address)
         self.shir_ch, self.dol_ch = toponym["Point"]["pos"].split()
         self.shir_ch, self.dol_ch = float(self.shir_ch), float(self.dol_ch)
         self.metka_pos_ch, self.metka_pos_dol = float(self.shir_ch), float(self.dol_ch)

@@ -2,16 +2,21 @@
 
 # Form implementation generated from reading ui file 'main.ui'
 #
-# Created by: PyQt5 UI code generator 5.9.2
+# Created by: PyQt5 UI code generator 5.13.0
 #
 # WARNING! All changes made in this file will be lost!
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(674, 669)
+        font = QtGui.QFont()
+        font.setPointSize(8)
+        MainWindow.setFont(font)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.our_map = QtWidgets.QLabel(self.centralwidget)
@@ -37,9 +42,15 @@ class Ui_MainWindow(object):
         self.adress.setGeometry(QtCore.QRect(10, 590, 651, 31))
         self.adress.setText("")
         self.adress.setObjectName("adress")
+        self.checkBox = QtWidgets.QCheckBox(self.centralwidget)
+        self.checkBox.setGeometry(QtCore.QRect(370, 550, 91, 31))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.checkBox.setFont(font)
+        self.checkBox.setObjectName("checkBox")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 674, 26))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 674, 19))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -57,4 +68,4 @@ class Ui_MainWindow(object):
         self.chng_map.setText(_translate("MainWindow", "нажмите чтобы \n"
 "сменить тип карты"))
         self.search_del.setText(_translate("MainWindow", "Очистка поиского запроса"))
-
+        self.checkBox.setText(_translate("MainWindow", "Индекс"))
