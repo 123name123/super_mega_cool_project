@@ -35,6 +35,7 @@ class Example(QMainWindow, Ui_MainWindow):
         self.map = 'map'
 
     def run_search(self):
+        self.checkBox.stateChanged.connect(self.run_search)
         toponym_to_find = self.input.text()
         geocoder_api_server = "http://geocode-maps.yandex.ru/1.x/"
         geocoder_params = {
