@@ -50,7 +50,8 @@ class Example(QMainWindow, Ui_MainWindow):
             "featureMember"][0]["GeoObject"]
         toponym_address = toponym["metaDataProperty"]["GeocoderMetaData"]["text"]
         try:
-            toponym_post_code = toponym["metaDataProperty"]["GeocoderMetaData"]["Address"]["postal_code"]
+            toponym_post_code = toponym["metaDataProperty"]["GeocoderMetaData"][
+                "Address"]["postal_code"]
         except Exception:
             self.checkBox.setCheckState(False)
         if self.checkBox.isChecked():
