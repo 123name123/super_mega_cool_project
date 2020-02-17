@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>674</width>
-    <height>673</height>
+    <height>669</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -66,17 +66,18 @@
    <widget class="QPushButton" name="chng_map">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>590</y>
-      <width>341</width>
-      <height>31</height>
+      <x>360</x>
+      <y>510</y>
+      <width>131</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>press to change type of the map</string>
+     <string>нажмите чтобы 
+сменить тип карты</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="search_del">
     <property name="geometry">
      <rect>
       <x>180</x>
@@ -89,6 +90,19 @@
      <string>Очистка поиского запроса</string>
     </property>
    </widget>
+   <widget class="QLabel" name="adress">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>590</y>
+      <width>651</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -96,7 +110,7 @@
      <x>0</x>
      <y>0</y>
      <width>674</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

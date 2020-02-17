@@ -2,18 +2,16 @@
 
 # Form implementation generated from reading ui file 'main.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.0
+# Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost!
 
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(674, 673)
+        MainWindow.resize(674, 669)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.our_map = QtWidgets.QLabel(self.centralwidget)
@@ -30,14 +28,18 @@ class Ui_MainWindow(object):
         self.label_2.setGeometry(QtCore.QRect(10, 470, 211, 31))
         self.label_2.setObjectName("label_2")
         self.chng_map = QtWidgets.QPushButton(self.centralwidget)
-        self.chng_map.setGeometry(QtCore.QRect(10, 590, 341, 31))
+        self.chng_map.setGeometry(QtCore.QRect(360, 510, 131, 41))
         self.chng_map.setObjectName("chng_map")
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(180, 550, 171, 31))
-        self.pushButton.setObjectName("pushButton")
+        self.search_del = QtWidgets.QPushButton(self.centralwidget)
+        self.search_del.setGeometry(QtCore.QRect(180, 550, 171, 31))
+        self.search_del.setObjectName("search_del")
+        self.adress = QtWidgets.QLabel(self.centralwidget)
+        self.adress.setGeometry(QtCore.QRect(10, 590, 651, 31))
+        self.adress.setText("")
+        self.adress.setObjectName("adress")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 674, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 674, 26))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -52,5 +54,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.search.setText(_translate("MainWindow", "Искать"))
         self.label_2.setText(_translate("MainWindow", "Введите адрес:"))
-        self.chng_map.setText(_translate("MainWindow", "press to change type of the map"))
-        self.pushButton.setText(_translate("MainWindow", "Очистка поиского запроса"))
+        self.chng_map.setText(_translate("MainWindow", "нажмите чтобы \n"
+"сменить тип карты"))
+        self.search_del.setText(_translate("MainWindow", "Очистка поиского запроса"))
+

@@ -11,11 +11,18 @@ class Example(QMainWindow, Ui_MainWindow):
         super().__init__()
         self.setupUi(self)
         self.initUI()
+        self.setStyleSheet("""background-color: #ffe5b4""")
+        self.input.setStyleSheet("""background-color: #ffffff""")
+        self.input.setStyleSheet("""background-color: #ffffff""")
+        self.input.setStyleSheet("""background-color: #ffffff""")
+        self.chng_map.setStyleSheet("""background-color: #ffffff""")
+        self.search.setStyleSheet("""background-color: #ffffff""")
+        self.search_del.setStyleSheet("""background-color: #ffffff""")
 
     def initUI(self):
         self.search.clicked.connect(self.run_search)
         self.chng_map.clicked.connect(self.map_chng)
-        self.pushButton.clicked.connect(self.del_search)
+        self.search_del.clicked.connect(self.del_search)
         self.dest_num = 1
         self.dest_list = [0.002, 0.005, 0.02, 0.05, 0.1, 0.3, 0.5, 1, 3, 5, 11, 15, 40]
         self.shir_ch = 37
@@ -37,6 +44,9 @@ class Example(QMainWindow, Ui_MainWindow):
         json_response = response.json()
         toponym = json_response["response"]["GeoObjectCollection"][
             "featureMember"][0]["GeoObject"]
+        toponym_address = toponym["metaDataProperty"]["GeocoderMetaData"]["text"]
+        self.adress.setText('Полный адрес: ' + toponym_address)
+
         self.shir_ch, self.dol_ch = toponym["Point"]["pos"].split()
         self.shir_ch, self.dol_ch = float(self.shir_ch), float(self.dol_ch)
         self.metka_pos_ch, self.metka_pos_dol = float(self.shir_ch), float(self.dol_ch)
@@ -47,6 +57,7 @@ class Example(QMainWindow, Ui_MainWindow):
         self.input.clear()
         self.metka_pos_ch, self.metka_pos_dol = -333, -333
         self.run_start()
+        self.adress.setText('')
 
     def map_chng(self):
         if self.map == 'map':
