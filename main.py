@@ -13,7 +13,8 @@ class Example(QMainWindow, Ui_MainWindow):
         super().__init__()
         self.setupUi(self)
         self.initUI()
-        self.flag = 0
+        self.address = ''
+        self.index = ''
         self.setStyleSheet("""background-color: #ffe5b4""")
         self.input.setStyleSheet("""background-color: #ffffff""")
         self.input.setStyleSheet("""background-color: #ffffff""")
@@ -34,8 +35,13 @@ class Example(QMainWindow, Ui_MainWindow):
         self.metka_pos_dol = None
         self.map = 'map'
 
+    def change_index(self):
+        if self.checkBox.isChecked():
+            self.adress.setText('Полный адрес: ' + self.address + ', ' + self.index)
+        else:
+            self.adress.setText('Полный адрес: ' + self.address)
+
     def run_search(self):
-        self.checkBox.stateChanged.connect(self.run_search)
         toponym_to_find = self.input.text()
         geocoder_api_server = "http://geocode-maps.yandex.ru/1.x/"
         geocoder_params = {
@@ -52,12 +58,15 @@ class Example(QMainWindow, Ui_MainWindow):
         try:
             toponym_post_code = toponym["metaDataProperty"]["GeocoderMetaData"][
                 "Address"]["postal_code"]
+            self.address = toponym_address
+            self.index = toponym_post_code
         except Exception:
             self.checkBox.setCheckState(False)
         if self.checkBox.isChecked():
             self.adress.setText('Полный адрес: ' + toponym_address + ', ' + toponym_post_code)
         else:
             self.adress.setText('Полный адрес: ' + toponym_address)
+        self.checkBox.stateChanged.connect(self.change_index)
         self.shir_ch, self.dol_ch = toponym["Point"]["pos"].split()
         self.shir_ch, self.dol_ch = float(self.shir_ch), float(self.dol_ch)
         self.metka_pos_ch, self.metka_pos_dol = float(self.shir_ch), float(self.dol_ch)
