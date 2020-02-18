@@ -36,24 +36,6 @@ class Example(QMainWindow, Ui_MainWindow):
             if self.dest_num >= 1:
                 self.dest_num -= 1
             self.run_start()
-        elif event.key() == Qt.Key_Up:
-            self.dol_ch += self.dest_list[self.dest_num] / 5
-            if not self.run_start():
-                self.dol_ch -= self.dest_list[self.dest_num] / 5
-        elif event.key() == Qt.Key_Down:
-            self.dol_ch -= self.dest_list[self.dest_num] / 5
-            if not self.run_start():
-                self.dol_ch += self.dest_list[self.dest_num] / 5
-        elif event.key() == Qt.Key_Right:
-            self.shir_ch += self.dest_list[self.dest_num] / 5
-            if not self.run_start():
-                self.shir_ch -= self.dest_list[self.dest_num] / 5
-        elif event.key() == Qt.Key_Left:
-            self.shir_ch -= self.dest_list[self.dest_num] / 5
-            if not self.run_start():
-                self.shir_ch += self.dest_list[self.dest_num] / 5
-        elif event.key() == Qt.Key_M:
-            self.map_chng()
 
     def run_start(self):
         try:
