@@ -4,6 +4,7 @@ import requests
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QMainWindow
+
 from mainForm import Ui_MainWindow
 
 
@@ -12,12 +13,22 @@ class Example(QMainWindow, Ui_MainWindow):
         super().__init__()
         self.setupUi(self)
         self.initUI()
+        self.flag = 0
+        self.setStyleSheet("""background-color: #ffe5b4""")
+        self.input.setStyleSheet("""background-color: #ffffff""")
+        self.input.setStyleSheet("""background-color: #ffffff""")
+        self.input.setStyleSheet("""background-color: #ffffff""")
+        self.chng_map.setStyleSheet("""background-color: #ffffff""")
+        self.search.setStyleSheet("""background-color: #ffffff""")
+        self.search_del.setStyleSheet("""background-color: #ffffff""")
 
     def initUI(self):
         self.search.clicked.connect(self.run_search)
         self.chng_map.clicked.connect(self.map_chng)
-        self.pushButton.clicked.connect(self.del_search)
+        self.search_del.clicked.connect(self.del_search)
         self.dest_num = 1
+        self.addres = None
+        self.org_name = None
         self.dest_list = [0.002, 0.005, 0.02, 0.05, 0.1, 0.3, 0.5, 1, 3, 5, 11, 15, 40]
         self.shir_ch = 37
         self.dol_ch = 55
@@ -40,13 +51,11 @@ class Example(QMainWindow, Ui_MainWindow):
             "featureMember"][0]["GeoObject"]
         self.shir_ch, self.dol_ch = toponym["Point"]["pos"].split()
         self.shir_ch, self.dol_ch = float(self.shir_ch), float(self.dol_ch)
-        self.metka_pos_ch, self.metka_pos_dol = float(self.shir_ch), float(self.dol_ch)
-
+        self.metka_pos_ch, self.metka_pos_dol = self.shir_ch, self.dol_ch
         self.run_start()
 
     def del_search(self):
         self.input.clear()
-        self.shir_ch, self.dol_ch = 57, 37
         self.metka_pos_ch, self.metka_pos_dol = -333, -333
         self.run_start()
 
@@ -69,17 +78,21 @@ class Example(QMainWindow, Ui_MainWindow):
                 self.dest_num -= 1
             self.run_start()
         elif event.key() == Qt.Key_Up:
-            self.dol_ch += self.dest_list[self.dest_num]
-            self.run_start()
+            self.dol_ch += self.dest_list[self.dest_num] / 5
+            if not self.run_start():
+                self.dol_ch -= self.dest_list[self.dest_num] / 5
         elif event.key() == Qt.Key_Down:
-            self.dol_ch -= self.dest_list[self.dest_num]
-            self.run_start()
+            self.dol_ch -= self.dest_list[self.dest_num] / 5
+            if not self.run_start():
+                self.dol_ch += self.dest_list[self.dest_num] / 5
         elif event.key() == Qt.Key_Right:
-            self.shir_ch += self.dest_list[self.dest_num]
-            self.run_start()
+            self.shir_ch += self.dest_list[self.dest_num] / 5
+            if not self.run_start():
+                self.shir_ch -= self.dest_list[self.dest_num] / 5
         elif event.key() == Qt.Key_Left:
-            self.shir_ch -= self.dest_list[self.dest_num]
-            self.run_start()
+            self.shir_ch -= self.dest_list[self.dest_num] / 5
+            if not self.run_start():
+                self.shir_ch += self.dest_list[self.dest_num] / 5
         elif event.key() == Qt.Key_M:
             self.map_chng()
 
@@ -87,12 +100,13 @@ class Example(QMainWindow, Ui_MainWindow):
         try:
             self.our_map.setFocus()
             dest = self.dest_list[self.dest_num]
-            print(self.metka_pos_ch, self.shir_ch)
             map_request = f"http://static-maps.yandex.ru/1.x/?" \
                           f"ll={self.shir_ch},{self.dol_ch}&spn" \
                           f"={dest},{dest}&l={self.map}&size=650,450" \
                           f"&pt={self.metka_pos_ch},{self.metka_pos_dol}"
             response = requests.get(map_request)
+            if not response:
+                return False
             if self.map == 'sat':
                 self.map_file = "map.jpg"
             else:
@@ -103,8 +117,9 @@ class Example(QMainWindow, Ui_MainWindow):
                 file.write(response.content)
             self.pixmap = QPixmap(self.map_file)
             self.our_map.setPixmap(self.pixmap)
+            return True
         except Exception:
-            return
+            return False
 
 
 if __name__ == '__main__':
