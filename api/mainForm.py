@@ -11,28 +11,13 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(674, 630)
+        MainWindow.resize(674, 510)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.our_map = QtWidgets.QLabel(self.centralwidget)
         self.our_map.setGeometry(QtCore.QRect(10, 10, 650, 450))
         self.our_map.setText("")
         self.our_map.setObjectName("our_map")
-        self.input = QtWidgets.QLineEdit(self.centralwidget)
-        self.input.setGeometry(QtCore.QRect(10, 510, 341, 31))
-        self.input.setObjectName("input")
-        self.search = QtWidgets.QPushButton(self.centralwidget)
-        self.search.setGeometry(QtCore.QRect(10, 550, 161, 31))
-        self.search.setObjectName("search")
-        self.label_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_2.setGeometry(QtCore.QRect(10, 470, 211, 31))
-        self.label_2.setObjectName("label_2")
-        self.chng_map = QtWidgets.QPushButton(self.centralwidget)
-        self.chng_map.setGeometry(QtCore.QRect(360, 510, 131, 41))
-        self.chng_map.setObjectName("chng_map")
-        self.search_del = QtWidgets.QPushButton(self.centralwidget)
-        self.search_del.setGeometry(QtCore.QRect(180, 550, 171, 31))
-        self.search_del.setObjectName("search_del")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 674, 26))
@@ -48,9 +33,4 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.search.setText(_translate("MainWindow", "Искать"))
-        self.label_2.setText(_translate("MainWindow", "Введите адрес:"))
-        self.chng_map.setText(_translate("MainWindow", "нажмите чтобы \n"
-"сменить тип карты"))
-        self.search_del.setText(_translate("MainWindow", "Очистка поиского запроса"))
 
